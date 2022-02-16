@@ -19,6 +19,10 @@ class EndToEndTests(unittest.TestCase):
 
         assert "No results found." not in driver.page_source
 
+        elem.click()
+        replacedText = driver.find_element(By.XPATH, "//body")
+        self.assertEqual(replacedText.text, "Hello, World!")
+
     def tearDown(self):
         self._driver.close()
 
