@@ -11,18 +11,6 @@ class EndToEndTests(unittest.TestCase):
         options.add_argument("--headless")
         self._driver = webdriver.Firefox(options=options)
 
-    def test_hello(self):
-        driver = self._driver
-        driver.get("http://127.0.0.1:5000/")
-
-        elem = driver.find_element(By.ID,"hello")
-
-        assert "No results found." not in driver.page_source
-
-        elem.click()
-        replacedText = driver.find_element(By.XPATH, "//body")
-        self.assertEqual(replacedText.text, "Hello, World!")
-
     def test_empty_list_on_first_call(self):
         driver = self._driver
         driver.get("http://127.0.0.1:5000/")
@@ -30,6 +18,10 @@ class EndToEndTests(unittest.TestCase):
         listElement = driver.find_element(By.ID, "1")
 
         assert "No results found." not in driver.page_source
+
+        #elem.click()
+        #replacedText = driver.find_element(By.XPATH, "//body")
+        #self.assertEqual(replacedText.text, "Hello, World!")
 
     def tearDown(self):
         self._driver.close()
