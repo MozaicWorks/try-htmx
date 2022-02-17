@@ -24,6 +24,9 @@ class EndToEndTests(unittest.TestCase):
         firstListItems = driver.find_elements(By.CSS_SELECTOR, "#first-list>li")
         self.assertEqual(1, len(firstListItems))
 
+        firstItemOfFirstList = firstListItems[0]
+        self.assertEqual("Item 1", firstItemOfFirstList.text)
+
     def tearDown(self):
         self._driver.close()
 

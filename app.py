@@ -11,6 +11,6 @@ def lists():
     return """
         <h1 id="first-list-header">First List</h1>
         <ol id='first-list'>
-            <li></li>
+            <li>Item 1</li>
         </ol>
     """
