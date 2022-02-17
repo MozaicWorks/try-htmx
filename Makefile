@@ -1,5 +1,5 @@
 run:
-	pipenv run python -m flask run
+	pipenv run flask run
 
 .test:
 
