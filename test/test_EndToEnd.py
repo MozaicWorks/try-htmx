@@ -23,6 +23,14 @@ class EndToEndTests(unittest.TestCase):
         replacedText = driver.find_element(By.XPATH, "//body")
         self.assertEqual(replacedText.text, "Hello, World!")
 
+    def test_empty_list_on_first_call(self):
+        driver = self._driver
+        driver.get("http://127.0.0.1:5000/")
+
+        listElement = driver.find_element(By.ID, "1")
+
+        assert "No results found." not in driver.page_source
+
     def tearDown(self):
         self._driver.close()
 
