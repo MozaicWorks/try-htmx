@@ -9,6 +9,8 @@ def index():
 @app.route('/lists', methods=['POST'])
 def lists():
     return """
-        <h1 id="First">First List</h1>
-        <ol id='1'></ol>
+        <h1 id="first-list-header">First List</h1>
+        <ol id='first-list'>
+            <li></li>
+        </ol>
     """

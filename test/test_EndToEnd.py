@@ -15,13 +15,14 @@ class EndToEndTests(unittest.TestCase):
         driver = self._driver
         driver.get("http://127.0.0.1:5000/")
 
-        listElement = driver.find_element(By.ID, "1")
-        assert "No results found." not in driver.page_source
-
-        listHeader = driver.find_element(By.ID, "First")
-        assert "No results found." not in driver.page_source
-
+        listHeader = driver.find_element(By.ID, "first-list-header")
         self.assertEqual("First List", listHeader.text)
+
+        listElement = driver.find_element(By.ID, "first-list")
+        assert "No results found." not in driver.page_source
+
+        firstListItems = driver.find_elements(By.CSS_SELECTOR, "#first-list>li")
+        self.assertEqual(1, len(firstListItems))
 
     def tearDown(self):
         self._driver.close()
