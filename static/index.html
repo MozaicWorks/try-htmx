@@ -4,7 +4,7 @@
 		<script src="https://unpkg.com/htmx.org@1.6.1"></script>
 	</head>
 	<body>
-		<!-- <button id="hello" hx-post="/hello" hx-swap="outerHTML"> -->
-		<ol id="1"></ol>
+		<div id="lists" hx-post="/lists" hx-trigger='load' hx-swap=innerHTML">
+		</div>
 	</body>
 </html>

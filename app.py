@@ -6,6 +6,8 @@ app = Flask(__name__)
 def index():
     return redirect(url_for('static', filename='index.html'))
 
-@app.route('/hello', methods=['POST'])
-def hello_world():
-    return 'Hello, World!'
+@app.route('/lists', methods=['POST'])
+def lists():
+    return """
+        <ol id='1'></ol>
+    """
