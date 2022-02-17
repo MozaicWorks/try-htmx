@@ -23,10 +23,6 @@ class EndToEndTests(unittest.TestCase):
 
         self.assertEqual("First List", listHeader.text)
 
-        #elem.click()
-        #replacedText = driver.find_element(By.XPATH, "//body")
-        #self.assertEqual(replacedText.text, "Hello, World!")
-
     def tearDown(self):
         self._driver.close()
 
