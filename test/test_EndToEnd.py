@@ -16,8 +16,12 @@ class EndToEndTests(unittest.TestCase):
         driver.get("http://127.0.0.1:5000/")
 
         listElement = driver.find_element(By.ID, "1")
-
         assert "No results found." not in driver.page_source
+
+        listHeader = driver.find_element(By.ID, "First")
+        assert "No results found." not in driver.page_source
+
+        self.assertEqual("First List", listHeader.text)
 
         #elem.click()
         #replacedText = driver.find_element(By.XPATH, "//body")
