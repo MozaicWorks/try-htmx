@@ -13,4 +13,5 @@ def lists():
         <ol id='first-list'>
             <li>Item 1</li>
         </ol>
+        <button id="add-item-first-list"></button>
     """
