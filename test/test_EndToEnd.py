@@ -28,7 +28,7 @@ class EndToEndTests(unittest.TestCase):
         self.assertEqual("Item 1", firstItemOfFirstList.text)
 
         firstListAddItemButton = driver.find_element(By.ID, "add-item-first-list")
-        assert "No results found." not in driver.page_source
+        self.assertEqual("Add Item", firstListAddItemButton.text)
 
     def tearDown(self):
         self._driver.close()
