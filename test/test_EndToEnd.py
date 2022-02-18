@@ -11,7 +11,7 @@ class EndToEndTests(unittest.TestCase):
         options.add_argument("--headless")
         self._driver = webdriver.Firefox(options=options)
 
-    def test_empty_list_on_first_call(self):
+    def test_empty_list_created_correctly_on_first_call(self):
         driver = self._driver
         driver.get("http://127.0.0.1:5000/")
 
@@ -29,6 +29,17 @@ class EndToEndTests(unittest.TestCase):
 
         firstListAddItemButton = driver.find_element(By.ID, "add-item-first-list")
         self.assertEqual("Add Item", firstListAddItemButton.text)
+
+    def test_add_item_to_first_list(self):
+        driver = self._driver
+        driver.get("http://127.0.0.1:5000/")
+        firstListAddItemButton = driver.find_element(By.ID, "add-item-first-list")
+
+        firstListAddItemButton.click()
+
+        firstListItems = driver.find_elements(By.CSS_SELECTOR, "#first-list>li")
+        self.assertEqual(2, len(firstListItems))
+
 
     def tearDown(self):
         self._driver.close()
