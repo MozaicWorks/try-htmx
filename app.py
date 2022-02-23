@@ -21,7 +21,7 @@ def lists():
 
 @app.route('/first-list/add', methods=['POST'])
 def newItem():
-    items = request.form['items[]']
+    #return "".join(["%s:%s" % item for item in request.values.items()]
     return """
             <h1 id="first-list-header">First List</h1>
             <ol id='first-list'>
@@ -32,5 +32,3 @@ def newItem():
             </ol>
              <button id="add-item-first-list" hx-post="/first-list/add" hx-trigger="click" hx-target="#first-list-container" hx-include="input">Add Item</button>
     """
-
-
