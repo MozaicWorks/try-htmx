@@ -21,14 +21,17 @@ def lists():
 
 @app.route('/first-list/add', methods=['POST'])
 def newItem():
-    #return "".join(["%s:%s" % item for item in request.values.items()]
-    return """
+    toDoListItems = request.values.to_dict(False)['items[]']
+    toDoListItems.append("New Item")
+    from jinja2 import Template
+    j2Template = Template("""
             <h1 id="first-list-header">First List</h1>
             <ol id='first-list'>
-                <li>Item 1</li>
-                <input name="items[]" type="text" value="Item 1"></input>
-                <li>Item 2</li>
-                <input name="items[]" type="text" value="Item 2"></input>
+            {% for item in toDoListItems %}
+                <li>{{item}}</li>
+                <input name="items[]" type="hidden" value="{{item}}"></input>
+            {% endfor %}
             </ol>
              <button id="add-item-first-list" hx-post="/first-list/add" hx-trigger="click" hx-target="#first-list-container" hx-include="input">Add Item</button>
-    """
+    """)
+    return j2Template.render(toDoListItems = toDoListItems)
