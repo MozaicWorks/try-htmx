@@ -11,24 +11,10 @@ class EndToEndTests(unittest.TestCase):
         options.add_argument("--headless")
         self._driver = webdriver.Firefox(options=options)
         self._driver.get("http://127.0.0.1:5000/")
+        self._homePage = HomePage(self._driver)
 
     def test_empty_list_created_correctly_on_first_call(self):
-        driver = self._driver
-
-        listHeader = driver.find_element(By.ID, "first-list-header")
-        self.assertEqual("First List", listHeader.text)
-
-        listElement = driver.find_element(By.CSS_SELECTOR, "ol#first-list")
-        assert "No results found." not in driver.page_source
-
-        firstListItems = driver.find_elements(By.CSS_SELECTOR, "#first-list>li")
-        self.assertEqual(1, len(firstListItems))
-
-        firstItemOfFirstList = firstListItems[0]
-        self.assertEqual("Item 1", firstItemOfFirstList.text)
-
-        firstListAddItemButton = driver.find_element(By.ID, "add-item-first-list")
-        self.assertEqual("Add Item", firstListAddItemButton.text)
+        self.assertEmptyListCreated(self._homePage)
 
     def test_add_item_to_first_list(self):
         driver = self._driver
@@ -48,6 +34,27 @@ class EndToEndTests(unittest.TestCase):
 
     def tearDown(self):
         self._driver.close()
+
+    def assertEmptyListCreated(self, homePage):
+        self.assertEqual("First List", homePage.firstListHeader().text)
+        self.assertListEqual(homePage.firstListItemsTexts(), ["Item 1"])
+        self.assertEqual("Add Item", homePage.firstListAddItemButton().text)
+
+class HomePage:
+    def __init__(self, driver):
+        self._driver = driver
+
+    def firstListHeader(self): 
+        return self._driver.find_element(By.ID, "first-list-header")
+
+    def firstListItems(self):
+        return self._driver.find_elements(By.CSS_SELECTOR, "#first-list>li")
+
+    def firstListItemsTexts(self):
+        return list(map(lambda item: item.text, self.firstListItems()))
+
+    def firstListAddItemButton(self):
+        return self._driver.find_element(By.ID, "add-item-first-list")
 
 if __name__ == '__main__':
     unittest.main()
