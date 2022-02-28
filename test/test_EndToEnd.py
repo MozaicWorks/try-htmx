@@ -1,7 +1,7 @@
+from test.HomePage import HomePage
+from test.ToDoListModel import ToDoListModel
 import unittest
 from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.common.by import By
 from selenium.webdriver.firefox.options import Options as FirefoxOptions
 from parameterized import parameterized 
 
@@ -31,47 +31,6 @@ class EndToEndTests(unittest.TestCase):
 
     def tearDown(self):
         self._driver.close()
-
-class HomePage:
-    def __init__(self, driver):
-        self._driver = driver
-
-    def firstListHeader(self): 
-        return self._driver.find_element(By.ID, "first-list-header")
-
-    def firstListItems(self):
-        return self._driver.find_elements(By.CSS_SELECTOR, "#first-list>li")
-
-    def firstListItemsTexts(self):
-        return list(map(lambda item: item.text, self.firstListItems()))
-
-    def firstListAddItemButton(self):
-        return self._driver.find_element(By.ID, "add-item-first-list")
-
-    def clickAddItemToFirstList(self):
-        self.firstListAddItemButton().click()
-
-    def toListModel(self):
-        return ToDoListModel(self.firstListHeader().text, self.firstListItemsTexts(), self.firstListAddItemButton().text)
-
-class ToDoListModel:
-    _name: str
-    _items: list
-    _addLabel: str
-    
-    def __init__(self, name, items, addLabel):
-        self._name = name
-        self._items = items
-        self._addLabel = addLabel
-
-    def __eq__(self, other):
-        return self._name == other._name and \
-                self._items == other._items and \
-                self._addLabel == other._addLabel
-
-    def __repr__(self):
-        return f"ToDoListModel(name={repr(self._name)}, items={repr(self._items)}, addLabel ={repr(self._addLabel)})"
-
 
 if __name__ == '__main__':
     unittest.main()
