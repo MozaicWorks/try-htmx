@@ -21,5 +21,11 @@ class HomePage:
     def clickAddItemToFirstList(self):
         self.firstListAddItemButton().click()
 
+    def editFirstItemOfFirstList(self, newText):
+        #Experiment with this interaction to test it
+        firstItem = self.firstListItems()[0]
+        firstItem.click()
+        firstItem.text = newText
+
     def toListModel(self):
         return ToDoListModel(self.firstListHeader().text, self.firstListItemsTexts(), self.firstListAddItemButton().text)
