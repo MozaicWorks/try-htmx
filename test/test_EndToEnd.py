@@ -14,31 +14,22 @@ class EndToEndTests(unittest.TestCase):
         self._homePage = HomePage(self._driver)
 
     def test_empty_list_created_correctly_on_first_call(self):
-        self.assertEmptyListCreated(self._homePage)
+        self.assertListIs(self._homePage, "First List", ["Item 1"], "Add Item")
 
     def test_add_item_to_first_list(self):
-        driver = self._driver
-        firstListAddItemButton = driver.find_element(By.ID, "add-item-first-list")
+        self._homePage.clickAddItemToFirstList()
+        self.assertListIs(self._homePage, "First List", ["Item 1", "New Item"], "Add Item")
 
-        firstListAddItemButton.click()
-
-        firstListItems = driver.find_elements(By.CSS_SELECTOR, "#first-list>li")
-        self.assertEqual(2, len(firstListItems))
-
-        firstListAddItemButton = driver.find_element(By.ID, "add-item-first-list")
-        firstListAddItemButton.click()
-
-        firstListItems = driver.find_elements(By.CSS_SELECTOR, "#first-list>li")
-        self.assertEqual(3, len(firstListItems))
-
+        self._homePage.clickAddItemToFirstList()
+        self.assertListIs(self._homePage, "First List", ["Item 1", "New Item", "New Item"], "Add Item")
 
     def tearDown(self):
         self._driver.close()
 
-    def assertEmptyListCreated(self, homePage):
-        self.assertEqual("First List", homePage.firstListHeader().text)
-        self.assertListEqual(homePage.firstListItemsTexts(), ["Item 1"])
-        self.assertEqual("Add Item", homePage.firstListAddItemButton().text)
+    def assertListIs(self, homePage, listName, listItemsTexts, addItemLabel):
+        self.assertEqual(listName, homePage.firstListHeader().text)
+        self.assertListEqual(homePage.firstListItemsTexts(), listItemsTexts)
+        self.assertEqual(addItemLabel, homePage.firstListAddItemButton().text)
 
 class HomePage:
     def __init__(self, driver):
@@ -55,6 +46,9 @@ class HomePage:
 
     def firstListAddItemButton(self):
         return self._driver.find_element(By.ID, "add-item-first-list")
+
+    def clickAddItemToFirstList(self):
+        self.firstListAddItemButton().click()
 
 if __name__ == '__main__':
     unittest.main()
