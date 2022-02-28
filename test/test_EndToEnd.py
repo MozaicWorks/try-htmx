@@ -11,6 +11,7 @@ class EndToEndTests(unittest.TestCase):
         options = FirefoxOptions()
         options.add_argument("--headless")
         self._driver = webdriver.Firefox(options=options)
+        self.addCleanup(self._driver.quit)
         self._driver.get("http://127.0.0.1:5000/")
         self._homePage = HomePage(self._driver)
 

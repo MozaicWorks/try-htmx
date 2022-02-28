@@ -5,4 +5,4 @@ run:
 
 
 test: .test
-	pipenv run python -m unittest
+	pipenv run python -m unittest -v
