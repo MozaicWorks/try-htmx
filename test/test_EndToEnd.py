@@ -10,10 +10,10 @@ class EndToEndTests(unittest.TestCase):
         options = FirefoxOptions()
         options.add_argument("--headless")
         self._driver = webdriver.Firefox(options=options)
+        self._driver.get("http://127.0.0.1:5000/")
 
     def test_empty_list_created_correctly_on_first_call(self):
         driver = self._driver
-        driver.get("http://127.0.0.1:5000/")
 
         listHeader = driver.find_element(By.ID, "first-list-header")
         self.assertEqual("First List", listHeader.text)
@@ -32,7 +32,6 @@ class EndToEndTests(unittest.TestCase):
 
     def test_add_item_to_first_list(self):
         driver = self._driver
-        driver.get("http://127.0.0.1:5000/")
         firstListAddItemButton = driver.find_element(By.ID, "add-item-first-list")
 
         firstListAddItemButton.click()
