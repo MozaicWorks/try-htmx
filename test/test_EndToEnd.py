@@ -29,8 +29,7 @@ class EndToEndTests(unittest.TestCase):
 
         self.assertEqual(self._homePage.toListModel(), expectedListModel)
 
-    # Ignored - todo for next time!!!
-    def _test_edit_first_item_of_first_list(self):
+    def test_edit_first_item_of_first_list(self):
         expectedListModel = ToDoListModel("First List", ["Milk"], "Add Item")
 
         self._homePage.editFirstItemOfFirstList("Milk")

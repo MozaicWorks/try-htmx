@@ -21,11 +21,20 @@ class HomePage:
     def clickAddItemToFirstList(self):
         self.firstListAddItemButton().click()
 
+    def firstListFirstItemEditor(self):
+        return self._driver.find_element(By.ID, "first-list-first-item-edit")
+
+    def firstListFirstItemSave(self):
+        return self._driver.find_element(By.ID, "first-list-first-item-save")
+
     def editFirstItemOfFirstList(self, newText):
-        #Experiment with this interaction to test it
         firstItem = self.firstListItems()[0]
         firstItem.click()
-        firstItem.text = newText
+        firstItemEditor = self.firstListFirstItemEditor()
+        firstItemEditor.clear()
+        firstItemEditor.send_keys(newText)
+        firstItemSave = self.firstListFirstItemSave()
+        firstItemSave.click()
 
     def toListModel(self):
         return ToDoListModel(self.firstListHeader().text, self.firstListItemsTexts(), self.firstListAddItemButton().text)
