@@ -2,7 +2,7 @@
 <ol id='first-list'>
 {% for item in toDoListItems %}
 	<li hx-post="/first-list/first-item/edit" hx-trigger="click" hx-target="#first-list-container" hx-include="input">{{item}}</li>
-    <input id="first-list-first-item-edit" name="items[]" type="hidden" value="{{item}}"></input>
+    <input name="items[]" type="hidden" value="{{item}}"></input>
 {% endfor %}
 </ol>
 <button id="add-item-first-list" hx-post="/first-list/add" hx-trigger="click" hx-target="#first-list-container" hx-include="input">Add Item</button>

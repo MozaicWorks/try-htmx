@@ -27,5 +27,3 @@ def editFirstItem():
 def saveFirstItem():
     toDoListItems = request.values.to_dict(False)['items[]']
     return render_template('todolist.html', toDoListItems = toDoListItems)
-
-
