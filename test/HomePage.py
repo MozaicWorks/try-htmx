@@ -21,35 +21,20 @@ class HomePage:
     def clickAddItemToFirstList(self):
         self.firstListAddItemButton().click()
 
-    def firstListFirstItemEditor(self):
+    def itemEditor(self):
         return self._driver.find_element(By.ID, "list-1-item-edit")
 
-    def firstListSecondItemEditor(self):
-        return self._driver.find_element(By.ID, "list-1-item-edit")
-
-    def firstListFirstItemSave(self):
+    def itemSave(self):
         return self._driver.find_element(By.ID, "list-1-item-save")
 
-    def firstListSecondItemSave(self):
-        return self._driver.find_element(By.ID, "list-1-item-save")
-
-    def editFirstItemOfFirstList(self, newText):
-        firstItem = self.firstListItems()[0]
+    def editItemOfFirstList(self, index, newText):
+        firstItem = self.firstListItems()[index]
         firstItem.click()
-        firstItemEditor = self.firstListFirstItemEditor()
-        firstItemEditor.clear()
-        firstItemEditor.send_keys(newText)
-        firstItemSave = self.firstListFirstItemSave()
-        firstItemSave.click()
-
-    def editSecondItemOfFirstList(self, newText):
-        secondItem = self.firstListItems()[1]
-        secondItem.click()
-        secondItemEditor = self.firstListSecondItemEditor()
-        secondItemEditor.clear()
-        secondItemEditor.send_keys(newText)
-        secondItemSave = self.firstListSecondItemSave()
-        secondItemSave.click()
+        editor = self.itemEditor()
+        editor.clear()
+        editor.send_keys(newText)
+        save = self.itemSave()
+        save.click()
 
     def toListModel(self):
         return ToDoListModel(self.firstListHeader().text, self.firstListItemsTexts(), self.firstListAddItemButton().text)

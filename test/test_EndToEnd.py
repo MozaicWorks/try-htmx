@@ -28,19 +28,19 @@ class EndToEndTests(unittest.TestCase):
             self._homePage.clickAddItemToFirstList()
 
         self.assertEqual(self._homePage.toListModel(), expectedListModel)
+        
+    @parameterized.expand([
+       ("Edit first", 0, 0, "Milk", ["Milk"] ), 
+       ("Edit second", 1, 1, "Milk", ["Item 1", "Milk"] ),
+       ("Edit third", 2, 2, "Milk", ["Item 1", "New Item", "Milk"] ),
+   ])
+    def test_edit_item_of_first_list(self, description, addItemsCount, itemIndex, newText, expectedListItems):
+        expectedListModel = ToDoListModel("First List", expectedListItems, "Add Item")
 
-    def test_edit_first_item_of_first_list(self):
-        expectedListModel = ToDoListModel("First List", ["Milk"], "Add Item")
+        for index in range(addItemsCount):
+            self._homePage.clickAddItemToFirstList()
 
-        self._homePage.editFirstItemOfFirstList("Milk")
-
-        self.assertEqual(self._homePage.toListModel(), expectedListModel)
-
-    def test_edit_second_item_of_first_list(self):
-        expectedListModel = ToDoListModel("First List", ["Item 1", "Milk"], "Add Item")
-        self._homePage.clickAddItemToFirstList()
-
-        self._homePage.editSecondItemOfFirstList("Milk")
+        self._homePage.editItemOfFirstList(itemIndex, newText)
 
         self.assertEqual(self._homePage.toListModel(), expectedListModel)
 
