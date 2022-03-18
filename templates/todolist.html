@@ -1,8 +1,8 @@
-<h1 id="first-list-header">First List</h1>
-<ol id='first-list'>
+<h1 id="list-header-1">First List</h1>
+<ol id='list-1'>
 {% for item in toDoListItems %}
-<li hx-get="/lists/1/{{ loop.index }}/edit" hx-trigger="click" hx-target="#first-list-container" hx-include="input">{{item}}</li>
+<li hx-get="/lists/1/{{ loop.index }}/edit" hx-trigger="click" hx-target="#container-list-1" hx-include="input">{{item}}</li>
     <input name="items[]" type="hidden" value="{{item}}"></input>
 {% endfor %}
 </ol>
-<button id="add-item-first-list" hx-post="/lists/1/" hx-trigger="click" hx-target="#first-list-container" hx-include="input">Add Item</button>
+<button id="add-item-list-1" hx-post="/lists/1/" hx-trigger="click" hx-target="#container-list-1" hx-include="input">Add Item</button>

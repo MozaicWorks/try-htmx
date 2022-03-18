@@ -7,31 +7,31 @@ class HomePage:
         self._driver = driver
 
     def firstListHeader(self): 
-        return self._driver.find_element(By.ID, "first-list-header")
+        return self._driver.find_element(By.ID, "list-header-1")
 
     def firstListItems(self):
-        return self._driver.find_elements(By.CSS_SELECTOR, "#first-list>li")
+        return self._driver.find_elements(By.CSS_SELECTOR, "#list-1>li")
 
     def firstListItemsTexts(self):
         return list(map(lambda item: item.text, self.firstListItems()))
 
     def firstListAddItemButton(self):
-        return self._driver.find_element(By.ID, "add-item-first-list")
+        return self._driver.find_element(By.ID, "add-item-list-1")
 
     def clickAddItemToFirstList(self):
         self.firstListAddItemButton().click()
 
     def firstListFirstItemEditor(self):
-        return self._driver.find_element(By.ID, "first-list-first-item-edit")
+        return self._driver.find_element(By.ID, "list-1-item-edit")
 
     def firstListSecondItemEditor(self):
-        return self._driver.find_element(By.ID, "first-list-second-item-edit")
+        return self._driver.find_element(By.ID, "list-1-item-edit")
 
     def firstListFirstItemSave(self):
-        return self._driver.find_element(By.ID, "first-list-first-item-save")
+        return self._driver.find_element(By.ID, "list-1-item-save")
 
     def firstListSecondItemSave(self):
-        return self._driver.find_element(By.ID, "first-list-second-item-save")
+        return self._driver.find_element(By.ID, "list-1-item-save")
 
     def editFirstItemOfFirstList(self, newText):
         firstItem = self.firstListItems()[0]

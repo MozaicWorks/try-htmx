@@ -19,15 +19,10 @@ def newItem(listId):
 @app.route('/lists/<int:listId>/<int:itemId>/edit', methods=['GET'])
 def editFirstItem(listId, itemId):
     toDoListItems = request.values.to_dict(False)['items[]']
-    if(itemId != 1):
-        beforeItems = toDoListItems[:itemId-1]
-        editedItem = toDoListItems[itemId - 1]
-        afterItems = toDoListItems[itemId:]
-        return render_template('edit-item.html', beforeItems = beforeItems, editedItem = editedItem, afterItems = afterItems)
-
+    beforeItems = toDoListItems[:itemId-1]
     editedItem = toDoListItems[itemId - 1]
-    displayedItems = toDoListItems[1:]
-    return render_template('edit-first-item.html', editedItem = editedItem, displayedItems = displayedItems )
+    afterItems = toDoListItems[itemId:]
+    return render_template('edit-item.html', beforeItems = beforeItems, editedItem = editedItem, afterItems = afterItems)
 
 @app.route('/lists/<int:listId>/<int:itemId>/', methods=['POST'])
 def saveFirstItem(listId, itemId):

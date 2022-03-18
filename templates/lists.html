@@ -1,8 +1,8 @@
-<div id="first-list-container">
-<h1 id="first-list-header">First List</h1>
-<ol id='first-list'>
-	<li hx-get="/lists/1/1/edit" hx-trigger="click" hx-target="#first-list-container" hx-include="input">Item 1</li>
+<div id="container-list-1">
+<h1 id="list-header-1">First List</h1>
+<ol id='list-1'>
+	<li hx-get="/lists/1/1/edit" hx-trigger="click" hx-target="#container-list-1" hx-include="input">Item 1</li>
     <input name="items[]" type="hidden" value="Item 1"></input>
 </ol>
-<button id="add-item-first-list" hx-post="/lists/1/" hx-trigger="click" hx-target="#first-list-container" hx-include="input">Add Item</button>
+<button id="add-item-list-1" hx-post="/lists/1/" hx-trigger="click" hx-target="#container-list-1" hx-include="input">Add Item</button>
 </div>
