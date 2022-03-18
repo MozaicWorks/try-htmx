@@ -24,8 +24,14 @@ class HomePage:
     def firstListFirstItemEditor(self):
         return self._driver.find_element(By.ID, "first-list-first-item-edit")
 
+    def firstListSecondItemEditor(self):
+        return self._driver.find_element(By.ID, "first-list-second-item-edit")
+
     def firstListFirstItemSave(self):
         return self._driver.find_element(By.ID, "first-list-first-item-save")
+
+    def firstListSecondItemSave(self):
+        return self._driver.find_element(By.ID, "first-list-second-item-save")
 
     def editFirstItemOfFirstList(self, newText):
         firstItem = self.firstListItems()[0]
@@ -35,6 +41,15 @@ class HomePage:
         firstItemEditor.send_keys(newText)
         firstItemSave = self.firstListFirstItemSave()
         firstItemSave.click()
+
+    def editSecondItemOfFirstList(self, newText):
+        secondItem = self.firstListItems()[1]
+        secondItem.click()
+        secondItemEditor = self.firstListSecondItemEditor()
+        secondItemEditor.clear()
+        secondItemEditor.send_keys(newText)
+        secondItemSave = self.firstListSecondItemSave()
+        secondItemSave.click()
 
     def toListModel(self):
         return ToDoListModel(self.firstListHeader().text, self.firstListItemsTexts(), self.firstListAddItemButton().text)

@@ -36,6 +36,14 @@ class EndToEndTests(unittest.TestCase):
 
         self.assertEqual(self._homePage.toListModel(), expectedListModel)
 
+    def test_edit_second_item_of_first_list(self):
+        expectedListModel = ToDoListModel("First List", ["Item 1", "Milk"], "Add Item")
+        self._homePage.clickAddItemToFirstList()
+
+        self._homePage.editSecondItemOfFirstList("Milk")
+
+        self.assertEqual(self._homePage.toListModel(), expectedListModel)
+
     def tearDown(self):
         self._driver.close()
 
