@@ -6,24 +6,24 @@ app = Flask(__name__)
 def index():
     return render_template("index.html")
 
-@app.route('/lists', methods=['POST'])
+@app.route('/lists', methods=['GET'])
 def lists():
     return render_template("lists.html")
 
-@app.route('/first-list/add', methods=['POST'])
-def newItem():
+@app.route('/lists/<int:listId>/', methods=['POST'])
+def newItem(listId):
     toDoListItems = request.values.to_dict(False)['items[]']
     toDoListItems.append("New Item")
     return render_template('todolist.html', toDoListItems = toDoListItems)
 
-@app.route('/first-list/first-item/edit', methods=['POST'])
-def editFirstItem():
+@app.route('/lists/<int:listId>/<int:itemId>/edit', methods=['GET'])
+def editFirstItem(listId, itemId):
     toDoListItems = request.values.to_dict(False)['items[]']
-    editedItem = toDoListItems[0]
+    editedItem = toDoListItems[itemId - 1]
     displayedItems = toDoListItems[1:]
     return render_template('edit-first-item.html', editedItem = editedItem, displayedItems = displayedItems )
 
-@app.route('/first-list/first-item/save', methods=['POST'])
+@app.route('/lists/1/1/', methods=['POST'])
 def saveFirstItem():
     toDoListItems = request.values.to_dict(False)['items[]']
     return render_template('todolist.html', toDoListItems = toDoListItems)
