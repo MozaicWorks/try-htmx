@@ -1,14 +1,14 @@
 <h1 id="list-header-1">First List</h1>
 <ol id='list-1'>
-{% for item in beforeItems %}
+{% for item in before %}
 	<li hx-get="/lists/1/1/edit" hx-trigger="click" hx-target="#container-list-1" hx-include="input">{{item}}</li>
     <input name="items[]" type="hidden" value="{{item}}"></input>
 {% endfor %}
 
-    <input id="list-1-item-edit" name="items[]" type="text" value="{{editedItem}}"></input>
+    <input id="list-1-item-edit" name="items[]" type="text" value="{{current}}"></input>
 	<button id="list-1-item-save" hx-post="/lists/1/2/" hx-trigger="click" hx-target="#container-list-1" hx-include="input">Save</button>
 
-{% for item in afterItems %}
+{% for item in after %}
 	<li hx-get="/lists/1/1/edit" hx-trigger="click" hx-target="#container-list-1" hx-include="input">{{item}}</li>
     <input name="items[]" type="hidden" value="{{item}}"></input>
 {% endfor %}

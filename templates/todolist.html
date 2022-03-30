@@ -1,6 +1,6 @@
 <h1 id="list-header-1">First List</h1>
 <ol id='list-1'>
-{% for item in toDoListItems %}
+{% for item in items %}
 <li hx-get="/lists/1/{{ loop.index }}/edit" hx-trigger="click" hx-target="#container-list-1" hx-include="input">{{item}}</li>
     <input name="items[]" type="hidden" value="{{item}}"></input>
 {% endfor %}
