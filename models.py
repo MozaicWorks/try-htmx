@@ -16,7 +16,7 @@ class Models:
 
     def splitListInBeforeCurrentAfter(self, itemList, itemIndex):
         return {
-            'before': itemList[:itemIndex-1], 
-            'current': itemList[itemIndex - 1], 
+            'before': itemList[:itemIndex-1],
+            'current': itemList[itemIndex - 1],
             'after': itemList[itemIndex:]
-           }
+        }

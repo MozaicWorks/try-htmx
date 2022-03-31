@@ -2,11 +2,12 @@ from test.ToDoListModel import ToDoListModel
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 
+
 class HomePage:
     def __init__(self, driver):
         self._driver = driver
 
-    def firstListHeader(self): 
+    def firstListHeader(self):
         return self._driver.find_element(By.ID, "list-header-1")
 
     def firstListItems(self):

@@ -8,6 +8,7 @@ flask = "*"
 selenium = "*"
 python-dotenv = "*"
 parameterized = "*"
+autopep8 = "*"
 
 [dev-packages]
 
