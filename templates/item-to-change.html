@@ -1,0 +1,4 @@
+{% macro itemToChange(current) -%}
+    <input id="list-1-item-edit" name="items[]" type="text" value="{{current}}"></input>
+	<button id="list-1-item-save" hx-post="/lists/1/2/" hx-trigger="click" hx-target="#container-list-1" hx-include="input">Save</button>
+{%- endmacro %}

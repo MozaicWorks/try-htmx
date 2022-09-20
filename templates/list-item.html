@@ -1,0 +1,4 @@
+{% macro listItem(item) -%}
+	<li hx-get="/lists/1/1/edit" hx-trigger="click" hx-target="#container-list-1" hx-include="input">{{item}}</li>
+    <input name="items[]" type="hidden" value="{{item}}"></input>
+{%- endmacro %}
